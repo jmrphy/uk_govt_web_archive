@@ -5,7 +5,7 @@ author:
   affiliation: University of Southampton
   email: j.murphy@soton.ac.uk
 date: April 2014
-abstract: Scholars argue that globalisation is strategically deployed by governments [@Hay:2011dh]. This is the first large-N statistical analysis of this argument.
+abstract: Scholars argue that globalisation is strategically deployed by governments [@Hay:2011dh]. This article is the first large-scale quantitative assessment of this argument, using text-mining and machine learning techniques to analyze how the government of the United Kingdom has deployed the term 'globalisation.' Specifically, this article exploits the newly released United Kingdom Government Web Archive to analyze a random sample of more than 60,000 web pages published across the entire UK government web system.
 ...
 
 ```{r setup, include=FALSE, results="hide", warning=FALSE}
@@ -18,11 +18,15 @@ require(tm)
 require(ggplot2)
 require(xtable)
 require(pander)
-setwd("~/Dropbox/gh_projects/uk_govt_web_archives")
+library(topicmodels)
+setwd("~/Dropbox/gh_projects/uk_govt_web_archive")
 load("data/globalisation_dtm.Rdata")
 load("data/globalisation_corpus.Rdata")
 inspected <- inspect(dtm)  # inspect the dtm
 ```
+I requested 150,000 web pages, received 67k and about 1k were errors. Thus, the final sample consists of a corpus of dtm
+
+\pagebreak
 
 
 ### Descriptive Statistics
@@ -47,6 +51,8 @@ assocs<-data.frame(row.names(assocs), assocs$globalis)
 names(assocs)<-c("Terms","Globalis")
 pander(assocs)
 ```
+
+\pagebreak
 
 # Cluster analysis
 ```{r Cluster-Analysis, cache=TRUE}
@@ -73,6 +79,8 @@ for (i in 1:length(kclusters$withinss)) {
 }
 ```
 
+\pagebreak
+
 # Appendix
 
 This is the appendix.
@@ -96,6 +104,12 @@ ggplot(wss, aes(x=numbers, y=wss)) +
                       labs(title="Within group sum of squares by number of clusters",
                            x="Number of clusters",
                            y="Within groups sum of squares")
+```
+
+```{r Latent-Dirichlet-Allocation, echo=FALSE, cache=TRUE}
+set.seed(666)
+topicmodel<-LDA(dtm[1:1000,], k = 9)
+get_terms(topicmodel, 20)
 ```
 
 \pagebreak

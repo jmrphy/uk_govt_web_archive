@@ -18,7 +18,8 @@
 \let\Oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
-\title{\bigskip \bigskip The Ideology of Globalisation}
+\title{\bigskip \bigskip How Does the State Speak of Globalisation? A Quantitative Text-Mining
+Approach}
 
 %\author{}
 
@@ -38,7 +39,6 @@
 
 \doublespacing
 
-\published{April 2014}
 
 \maketitle
 
@@ -47,19 +47,28 @@
 \begin{abstract}
 
 \noindent Scholars argue that globalisation is strategically deployed by
-governments (Hay and Rosamond 2011). This is the first large-N
-statistical analysis of this argument.
+governments (Hay and Rosamond 2011). This article is the first
+large-scale quantitative assessment of this argument, using text-mining
+and machine learning techniques to analyze how the government of the
+United Kingdom has deployed the term `globalisation.' Specifically, this
+article exploits the newly released United Kingdom Government Web
+Archive to analyze a random sample of more than 60,000 web pages
+published across the entire UK government web system.
 
 \end{abstract}
 
+
+I requested 150,000 web pages, received 67k and about 1k were errors.
+Thus, the final sample consists of a corpus of dtm
+
+\pagebreak
 
 \subsubsection{Descriptive Statistics}\label{descriptive-statistics}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics{figure/globalisation_frequency_plot.png}
-\caption{Tea and Biscuits are correlated but there may be
-identifiability issues.}
+\caption{Most frequent terms}
 \end{figure}
 
 \pagebreak
@@ -138,6 +147,8 @@ perceiv
 \bottomrule
 \end{longtable}
 
+\pagebreak
+
 \section{Cluster analysis}\label{cluster-analysis}
 
 \begin{verbatim}
@@ -188,6 +199,8 @@ perceiv
 ## [7]  14.269600  21.928006  55.741371
 \end{verbatim}
 
+\pagebreak
+
 \section{Appendix}\label{appendix}
 
 This is the appendix.
@@ -216,6 +229,51 @@ This is the appendix.
 \includegraphics{figure/Cluster-Diagnostics.png}
 \caption{Binwidth}
 \end{figure}
+
+\begin{verbatim}
+##       Topic 1    Topic 2     Topic 3        Topic 4    Topic 5   
+##  [1,] "skill"    "school"    "globalis"     "financi"  "product" 
+##  [2,] "develop"  "use"       "websit"       "market"   "per"     
+##  [3,] "educ"     "educ"      "global"       "intern"   "year"    
+##  [4,] "globalis" "teacher"   "eldi"         "globalis" "countri" 
+##  [5,] "countri"  "ict"       "polici"       "capit"    "price"   
+##  [6,] "dfid"     "can"       "new"          "bank"     "world"   
+##  [7,] "also"     "learn"     "home"         "develop"  "cost"    
+##  [8,] "train"    "dfid"      "unit"         "economi"  "market"  
+##  [9,] "sector"   "project"   "europ"        "global"   "industri"
+## [10,] "research" "student"   "relationship" "econom"   "export"  
+## [11,] "need"     "technolog" "intern"       "risk"     "increas" 
+## [12,] "cultur"   "peopl"     "busi"         "countri"  "trade"   
+## [13,] "nation"   "work"      "inform"       "increas"  "cent"    
+## [14,] "econom"   "communiti" "trade"        "growth"   "import"  
+## [15,] "world"    "activ"     "countri"      "system"   "develop" 
+## [16,] "global"   "experi"    "world"        "will"     "govern"  
+## [17,] "poverti"  "comput"    "state"        "polici"   "period"  
+## [18,] "women"    "develop"   "tel"          "servic"   "even"    
+## [19,] "increas"  "also"      "work"         "benefit"  "exchang" 
+## [20,] "privat"   "teach"     "secur"        "invest"   "howev"   
+##       Topic 6    Topic 7    Topic 8    Topic 9     
+##  [1,] "pay"      "develop"  "develop"  "develop"   
+##  [2,] "plus"     "relat"    "countri"  "impact"    
+##  [3,] "fair"     "skill"    "trade"    "research"  
+##  [4,] "intern"   "strategi" "intern"   "agricultur"
+##  [5,] "institut" "level"    "govern"   "increas"   
+##  [6,] "concern"  "govern"   "work"     "servic"    
+##  [7,] "commerc"  "globalis" "will"     "report"    
+##  [8,] "encourag" "countri"  "polici"   "product"   
+##  [9,] "certain"  "term"     "world"    "rural"     
+## [10,] "popul"    "polici"   "peopl"    "food"      
+## [11,] "import"   "nation"   "import"   "use"       
+## [12,] "cent"     "market"   "poverti"  "also"      
+## [13,] "constitu" "requir"   "poor"     "may"       
+## [14,] "assur"    "key"      "globalis" "health"    
+## [15,] "programm" "global"   "effect"   "popul"     
+## [16,] "public"   "educ"     "invest"   "water"     
+## [17,] "accord"   "two"      "price"    "migrat"    
+## [18,] "social"   "differ"   "inflat"   "area"      
+## [19,] "parti"    "state"    "can"      "growth"    
+## [20,] "term"     "competit" "increas"  "poverti"
+\end{verbatim}
 
 \pagebreak
 

@@ -1,11 +1,11 @@
 ---
-title: The Ideology of Globalisation
+title: How Does the State Speak of Globalisation? A Quantitative Text-Mining Approach
 author:
 - name: Justin Murphy
   affiliation: University of Southampton
   email: j.murphy@soton.ac.uk
 date: April 2014
-abstract: Scholars argue that globalisation is strategically deployed by governments [@Hay:2011dh]. This is the first large-N statistical analysis of this argument.
+abstract: Scholars argue that globalisation is strategically deployed by governments [@Hay:2011dh]. This article is the first large-scale quantitative assessment of this argument, using text-mining and machine learning techniques to analyze how the government of the United Kingdom has deployed the term 'globalisation.' Specifically, this article exploits the newly released United Kingdom Government Web Archive to analyze a random sample of more than 60,000 web pages published across the entire UK government web system.
 ...
 
 
@@ -14,10 +14,13 @@ abstract: Scholars argue that globalisation is strategically deployed by governm
 
 
 
+I requested 150,000 web pages, received 67k and about 1k were errors. Thus, the final sample consists of a corpus of dtm
+
+\pagebreak
 
 
 ### Descriptive Statistics
-![Tea and Biscuits are correlated but there may be identifiability issues.](figure/globalisation_frequency_plot.png) 
+![Most frequent terms](figure/globalisation_frequency_plot.png) 
 
 
 \pagebreak
@@ -48,6 +51,8 @@ secondari    0.84
  perceiv     0.76   
 --------------------
 
+
+\pagebreak
 
 # Cluster analysis
 
@@ -100,6 +105,8 @@ secondari    0.84
 ```
 
 
+\pagebreak
+
 # Appendix
 
 This is the appendix.
@@ -122,6 +129,53 @@ This is the appendix.
 ```
 
 ![Binwidth](figure/Cluster-Diagnostics.png) 
+
+
+
+```
+##       Topic 1    Topic 2     Topic 3        Topic 4    Topic 5   
+##  [1,] "skill"    "school"    "globalis"     "financi"  "product" 
+##  [2,] "develop"  "use"       "websit"       "market"   "per"     
+##  [3,] "educ"     "educ"      "global"       "intern"   "year"    
+##  [4,] "globalis" "teacher"   "eldi"         "globalis" "countri" 
+##  [5,] "countri"  "ict"       "polici"       "capit"    "price"   
+##  [6,] "dfid"     "can"       "new"          "bank"     "world"   
+##  [7,] "also"     "learn"     "home"         "develop"  "cost"    
+##  [8,] "train"    "dfid"      "unit"         "economi"  "market"  
+##  [9,] "sector"   "project"   "europ"        "global"   "industri"
+## [10,] "research" "student"   "relationship" "econom"   "export"  
+## [11,] "need"     "technolog" "intern"       "risk"     "increas" 
+## [12,] "cultur"   "peopl"     "busi"         "countri"  "trade"   
+## [13,] "nation"   "work"      "inform"       "increas"  "cent"    
+## [14,] "econom"   "communiti" "trade"        "growth"   "import"  
+## [15,] "world"    "activ"     "countri"      "system"   "develop" 
+## [16,] "global"   "experi"    "world"        "will"     "govern"  
+## [17,] "poverti"  "comput"    "state"        "polici"   "period"  
+## [18,] "women"    "develop"   "tel"          "servic"   "even"    
+## [19,] "increas"  "also"      "work"         "benefit"  "exchang" 
+## [20,] "privat"   "teach"     "secur"        "invest"   "howev"   
+##       Topic 6    Topic 7    Topic 8    Topic 9     
+##  [1,] "pay"      "develop"  "develop"  "develop"   
+##  [2,] "plus"     "relat"    "countri"  "impact"    
+##  [3,] "fair"     "skill"    "trade"    "research"  
+##  [4,] "intern"   "strategi" "intern"   "agricultur"
+##  [5,] "institut" "level"    "govern"   "increas"   
+##  [6,] "concern"  "govern"   "work"     "servic"    
+##  [7,] "commerc"  "globalis" "will"     "report"    
+##  [8,] "encourag" "countri"  "polici"   "product"   
+##  [9,] "certain"  "term"     "world"    "rural"     
+## [10,] "popul"    "polici"   "peopl"    "food"      
+## [11,] "import"   "nation"   "import"   "use"       
+## [12,] "cent"     "market"   "poverti"  "also"      
+## [13,] "constitu" "requir"   "poor"     "may"       
+## [14,] "assur"    "key"      "globalis" "health"    
+## [15,] "programm" "global"   "effect"   "popul"     
+## [16,] "public"   "educ"     "invest"   "water"     
+## [17,] "accord"   "two"      "price"    "migrat"    
+## [18,] "social"   "differ"   "inflat"   "area"      
+## [19,] "parti"    "state"    "can"      "growth"    
+## [20,] "term"     "competit" "increas"  "poverti"
+```
 
 
 \pagebreak
