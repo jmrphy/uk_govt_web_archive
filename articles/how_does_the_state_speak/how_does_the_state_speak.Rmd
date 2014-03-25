@@ -1,0 +1,11 @@
+**Abstract**: Many scholars argue that discourse around the concept of "globalisation" is deployed by governments for strategic purposes (CITE HAY and OTHERS). This hypothesis, like many other longstanding arguments regarding notions of a "ruling" or "state" ideology or a "state ideological apparatuses", have for at least two reasons rarely if ever been systematically tested. The first reason is that the state or the ruling class rarely if ever speaks as such. Thus, empirical analyses of ideology have always suffered from having to choose among highly questionable proxies such as elite newspapers or the verbal records of particular agencies or actors. The second problem is that nearly all previous empirical research into state ideology has been qualitative so that, while it is often very useful and informally convincing, it often precludes inference and generalization. This article provides the first truly systematic analysis into the nature of state ideology by exploiting what is perhaps the most comprehensive record of *how a state speaks*: the United Kingdom Government Website Archive. I argue that the entire range of a government's websites, by reflecting not only the discourse of the government itself but the whole range of voices which it officially sponsors, is perhaps the ideal record of the ideology of the ruling classes. This is because, by encompassing a wide diversity of discourses and positions, it accounts for the well-known refrain of conservatives that the ruling classes disagree on so much that the concept of a ruling ideology is false. If the entire range of government websites reflects a structure predicted by theorists of ideology, despite such wide diversity, then this will be a fresh vindication for the tradition of ideology critique. Second, rather than secondary indices of state discourse such as newspaper reports and rather than internal discourses not intended to have public effects, the ecosystem of government websites represents a direct record of the state's concrete contribution to public discourse.
+
+
+Literature review
+- mannheim
+- marx
+- althusser, ideological state apparatus
+- frankfurt school
+- therborn, how does the ruling class rule
+- chomsky
+

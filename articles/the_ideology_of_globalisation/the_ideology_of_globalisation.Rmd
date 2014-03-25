@@ -1,0 +1,108 @@
+---
+title: How Does the State Speak of Globalisation? A Quantitative Text-Mining Approach
+author:
+- name: Justin Murphy
+  affiliation: University of Southampton
+  email: j.murphy@soton.ac.uk
+date: April 2014
+abstract: Scholars argue that globalisation is strategically deployed by governments [@Hay:2011dh]. This is the first large-N statistical analysis of this argument.
+...
+
+```{r setup, include=FALSE, results="hide", warning=FALSE}
+opts_chunk$set(fig.width=10, fig.height=7, fig.show='hold', echo=FALSE, message=FALSE, warning=FALSE) 
+```
+
+
+```{r, echo=FALSE, results='hide', message=FALSE}
+require(tm)
+require(ggplot2)
+require(xtable)
+require(pander)
+setwd("~/Dropbox/gh_projects/uk_govt_web_archives")
+load("data/globalisation_dtm.Rdata")
+load("data/globalisation_corpus.Rdata")
+inspected <- inspect(dtm)  # inspect the dtm
+```
+
+
+### Descriptive Statistics
+```{r globalisation_frequency_plot, echo=FALSE, cache=TRUE, fig.cap="Most frequent terms"}
+frequencies<-head(sort(colSums(inspected), decreasing=TRUE), n=50) # list terms in order of frequency, with counts
+terms<-names(frequencies)
+freqs<-data.frame(terms,frequencies)
+freqs$terms <- factor(freqs$terms, levels=freqs$terms[order(frequencies)], ordered=TRUE)
+options(scipen=999)
+ggplot(data=freqs, aes(x=terms, y=frequencies)) +
+  geom_point(stat="identity") +
+  coord_flip() +
+  theme_bw()
+```
+
+\pagebreak
+
+#### Correlated terms
+```{r Term-Associations, echo=FALSE, results='asis', fig.align='center', cache=TRUE}
+assocs<-as.data.frame(findAssocs(dtm, 'globalis', 0.75))
+assocs<-data.frame(row.names(assocs), assocs$globalis)
+names(assocs)<-c("Terms","Globalis")
+pander(assocs)
+```
+
+# Cluster analysis
+```{r Cluster-Analysis, cache=TRUE}
+rowtotals <- apply(dtm, 1, sum) # find the sum of words in each document
+standarddtm <- dtm/rowtotals  # Thanks to Brandon Stewart for this and the code below here http://faculty.washington.edu/jwilker/tft/Stewart.LabHandout.pdf
+set.seed(666) # very satanic
+kclusters <- kmeans(standarddtm, centers=9)
+for (i in 1:length(kclusters$withinss)) {       
+#For each cluster, this defines the documents in that cluster
+    inGroup <- which(kclusters$cluster==i)
+    within <- standarddtm[inGroup,]
+    if(length(inGroup)==1) within <- t(as.matrix(within))
+    out <- standarddtm[-inGroup,]
+    words <- apply(within,2,mean) - apply(out,2,mean) #Take the difference in means for each term
+    print(c("Cluster", i), quote=F)
+    labels <- order(words, decreasing=T)[1:20] #Take the top 20 Labels
+    print(names(words)[labels], quote=F) #From here down just labels
+    if(i==length(kclusters$withinss)) {
+      print("Cluster Membership")
+      print(table(kclusters$cluster))
+      print("Within cluster sum of squares by cluster")
+      print(kclusters$withinss)
+    }
+}
+```
+
+# Appendix
+
+This is the appendix.
+
+```{r Document-Lengths, echo=FALSE, cache=TRUE, fig.cap="Document lengths"}
+hist<-as.data.frame(apply(dtm, 1, sum))
+ggplot(hist, aes(x=hist[,1])) + geom_histogram() + theme_bw() + labs(title="Distribution of document lengths", x="Number of terms in document", y="Count of documents")
+```
+
+```{r Cluster-Diagnostics, echo=FALSE, cache=TRUE, fig.cap="Binwidth"}
+summary(kclusters)
+set.seed(666)
+wss <- (nrow(standarddtm)-1)*sum(apply(standarddtm,2,var))
+for (i in 2:10) wss[i] <- sum(kmeans(standarddtm,
+                                     centers=i)$withinss)
+wss<-as.data.frame(wss)
+wss$numbers<-1:10
+ggplot(wss, aes(x=numbers, y=wss)) +
+                      geom_line() +
+                      theme_bw() +
+                      labs(title="Within group sum of squares by number of clusters",
+                           x="Number of clusters",
+                           y="Within groups sum of squares")
+```
+
+\pagebreak
+
+# References
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
