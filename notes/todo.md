@@ -1,0 +1,3 @@
+- add 10 more models testing k from 100-200
+- Determine optimal k for LDA models
+- Run LDA model

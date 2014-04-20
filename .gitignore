@@ -2,7 +2,9 @@
 *.RData
 *.rbd
 *.csv
+*.rda
 *.rdx
 cache/
+results/
 data/
 *.DS_Store

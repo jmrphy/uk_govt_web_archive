@@ -118,44 +118,15 @@ dtm <- DocumentTermMatrix(corpus)
 
 dtm <- removeSparseTerms(dtm, 0.9)  # keep only terms present in more than 10% of docs
 
+
+dim(dtm) # check
+dtm_tfidf <- tapply(dtm$v/row_sums(dtm)[dtm$i], dtm$j, mean) * log2(nDocs(dtm)/col_sums(dtm > 0))
+
+dtm <- dtm[, dtm_tfidf >= median(dtm_tfidf)] # only terms greater than median
+dtm <- dtm[row_sums(dtm) > 0,]
+
+dim(dtm) # check, reduced
+
 save("dtm", file="data/globalisation_dtm.Rdata") # save for future use
 
 
-
-findFreqTerms(dtm, 500000)
-findAssocs(dtm, 'globalis', 0.50)
-
-options(scipen=999)
-hist(apply(dtm, 1, sum), xlab="Number of Terms in Term-Document Matrix",
-     main="Number of Terms Per Paper in Participant Articles Corpus", breaks=100)
-
-rowtotals <- apply(dtm, 1, sum) # find the sum of words in each document
-standarddtm <- dtm/rowtotals  # Thanks to Brandon Stewart for this and the code below here http://faculty.washington.edu/jwilker/tft/Stewart.LabHandout.pdf
-
-set.seed(666) # very satanic
-kclusters <- kmeans(standarddtm, #Our input term document matrix
-                  centers=5, #The number of clusters)
-                  
-for (i in 1:length(kclusters$withinss)) {       
-#For each cluster, this defines the documents in that cluster
-    inGroup <- which(kclusters$cluster==i)
-    within <- standarddtm[inGroup,]
-    if(length(inGroup)==1) within <- t(as.matrix(within))
-    out <- standarddtm[-inGroup,]
-    words <- apply(within,2,mean) - apply(out,2,mean) #Take the difference in means for each term
-    print(c("Cluster", i), quote=F)
-    labels <- order(words, decreasing=T)[1:20] #Take the top 20 Labels
-    print(names(words)[labels], quote=F) #From here down just labels
-    if(i==length(kclusters$withinss)) {
-      print("Cluster Membership")
-      print(table(kclusters$cluster))
-      print("Within cluster sum of squares by cluster")
-      print(kclusters$withinss)
-    }
-}
-
-clusterNum <- 1 #Set the Cluster Number you want to look at
-#See list of all documents
-filenames[which(kclusters$cluster==clusterNum)]
-#See a random sample of one document
-filenames[which(results$cluster==clusterNum)][sample(sum(results$cluster==clusterNum),1)]
