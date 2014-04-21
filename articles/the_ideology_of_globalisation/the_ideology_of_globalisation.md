@@ -27,60 +27,43 @@ I requested 150,000 web pages, received 67k and about 1k were errors. Thus, the 
 \pagebreak
 
 #### Correlated terms
+|Terms       |  Correlation|
+|:-----------|------------:|
+|world       |         0.78|
+|countri     |         0.66|
+|economi     |         0.63|
+|threat      |         0.62|
+|increas     |         0.61|
+|goal        |         0.60|
+|key         |         0.60|
+|agricultur  |         0.59|
+|also        |         0.59|
+|develop     |         0.58|
+|particular  |         0.57|
+|econom      |         0.55|
+|mani        |         0.55|
+|privat      |         0.55|
+|coher       |         0.54|
+|competit    |         0.54|
+|primari     |         0.53|
+|educ        |         0.52|
+|exampl      |         0.52|
+|howev       |         0.52|
+|integr      |         0.52|
+|success     |         0.52|
+|capac       |         0.50|
+|dfid        |         0.50|
+|millennium  |         0.50|
 
-------------------------
-  Terms     Correlation 
----------- -------------
-  world        0.78     
 
- countri       0.66     
+#### Cluster Analysis
 
- economi       0.63     
+In this section, I use *k*-means clustering to partition the corpus of documents into clusters of relatively similar documents. The *k*-means algorithm, also known as Lloyd's algorithm, is a non-parametric technique for partitioning *n* observations into the *k* clusters which minimize within-cluster variance.^[Specifically, within-cluster variance refers to the within-cluster sum of Euclidean distances from the centroids, or simply within-cluster sum of squared error (SSE)]. 
 
-  threat       0.62     
+K-means cluster analysis requires the analyst to define *k* in advance. As the number of clusters is typically not known in advance, the analyst executes the algorithm with several different values for *k* and compares the within-cluster sum of squared error for each. The *k* which results in the clusters with the lowest SSE, or is not significantly improved by additional *k*, is selected as the optimal *k*. This procedure showed that the 66,400 documents are optimally partitioned into about 200 clusters.^[See the Appendix.]
 
- increas       0.61     
 
-   goal         0.6     
 
-   key          0.6     
-
-agricultur     0.59     
-
-   also        0.59     
-
- develop       0.58     
-
-particular     0.57     
-
-  econom       0.55     
-
-   mani        0.55     
-
-  privat       0.55     
-
-  coher        0.54     
-
- competit      0.54     
-
- primari       0.53     
-
-   educ        0.52     
-
-  exampl       0.52     
-
-  howev        0.52     
-
-  integr       0.52     
-
- success       0.52     
-
-  capac         0.5     
-
-   dfid         0.5     
-
-millennium      0.5     
-------------------------
 
 
 \pagebreak
@@ -92,7 +75,7 @@ millennium      0.5
 ![Document lengths](figure/Document-Lengths.png) 
 
 
-![plot of chunk Cluster-Diagnostics](figure/Cluster-Diagnostics1.png) ![plot of chunk Cluster-Diagnostics](figure/Cluster-Diagnostics2.png) 
+![plot of chunk Cluster-Diagnostics](figure/Cluster-Diagnostics.png) 
 
 
 

@@ -15,9 +15,8 @@ doc.length.plot<-qplot(apply(dtm, 1, sum)) +
   theme_bw() +
   labs(x="Count", y="Number of Terms in Document", title="The Distribution of Document Lengths")
 
-n.lev<-15
-K<-1:n.lev
-wss.df<-data.frame(wss,1:n.lev)
+n.lev<-seq(100,700,100)
+wss.df<-data.frame(wss.df,n.lev)
 names(wss.df)<-c("WSS", "K")
 
 wss.plot<-ggplot(wss.df, aes(x=K, y=WSS)) +
@@ -26,28 +25,31 @@ wss.plot<-ggplot(wss.df, aes(x=K, y=WSS)) +
   labs(y="Within Sum of Squares", x="Clusters (k)", title="Within Sum of Squares by Number of Clusters")
 
 
+
 # Calculate the mean and standard deviation of difference between SSE of actual data and SSE of 250 randomized datasets
-r.sse <- matrix(0,dim(rand.mat)[1],dim(rand.mat)[2])
-wss.1 <- as.matrix(wss)
-for (i in 1:dim(r.sse)[2]) {
-  r.temp <- abs(rand.mat[,i]-wss.1[,1])
-  r.sse[,i] <- r.temp}
-r.sse.m <- apply(r.sse,1,mean)
-r.sse.sd <- apply(r.sse,1,sd)
-r.sse.plus <- r.sse.m + r.sse.sd
-r.sse.min <- r.sse.m - r.sse.sd
-K<-1:n.lev
-
-sse<-data.frame(K, r.sse.plus, r.sse.m, r.sse.min)
-sse<-melt(sse, id="K")
-
-sse.plot<-ggplot(sse, aes(x=K, y=value, colour=variable)) +
-  geom_line() +
-  theme_bw() +
-  theme(legend.position = "none") +
-  labs(y="Absolute Difference of Sum of Squared Error", x="Clusters (k)", title="Difference of Error Between Random and Actual Data by K") +
-  scale_color_manual(values=c("#000000","#CC6666", "#000000"))
-
+# r.sse <- matrix(0,dim(rand.mat)[1],dim(rand.mat)[2])
+# wss.1 <- as.matrix(wss)
+# for (i in 1:dim(r.sse)[2]) {
+#   r.temp <- abs(rand.mat[,i]-wss.1[,1])
+#   r.sse[,i] <- r.temp}
+# r.sse.m <- apply(r.sse,1,mean)
+# r.sse.sd <- apply(r.sse,1,sd)
+# r.sse.plus <- r.sse.m + r.sse.sd
+# r.sse.min <- r.sse.m - r.sse.sd
+# K<-1:n.lev
+# 
+# 
+# 
+# sse<-data.frame(K, r.sse.plus, r.sse.m, r.sse.min)
+# sse<-melt(sse, id="K")
+# 
+# sse.plot<-ggplot(sse, aes(x=K, y=value, colour=variable)) +
+#   geom_line() +
+#   theme_bw() +
+#   theme(legend.position = "none") +
+#   labs(y="Absolute Difference of Sum of Squared Error", x="Clusters (k)", title="Difference of Error Between Random and Actual Data by K") +
+#   scale_color_manual(values=c("#000000","#CC6666", "#000000"))
+# 
 
 
 

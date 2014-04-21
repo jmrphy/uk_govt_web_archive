@@ -48,10 +48,21 @@ ggplot(data=freqs, aes(x=terms, y=frequencies)) +
 
 #### Correlated terms
 ```{r Term-Associations, echo=FALSE, results='asis', fig.align='center', cache=TRUE}
-assocs<-as.data.frame(findAssocs(dtm, 'global', 0.5))
+assocs<-as.data.frame(findAssocs(dtm, 'global', 0.6))
 assocs<-data.frame(row.names(assocs), assocs$global)
 names(assocs)<-c("Terms","Correlation")
-pander(assocs)
+kable(assocs)
+```
+
+#### Cluster Analysis
+
+In this section, I use *k*-means clustering to partition the corpus of documents into clusters of relatively similar documents. The *k*-means algorithm, also known as Lloyd's algorithm, is a non-parametric technique for partitioning *n* observations into the *k* clusters which minimize within-cluster variance.^[Specifically, within-cluster variance refers to the within-cluster sum of Euclidean distances from the centroids, or simply within-cluster sum of squared error (SSE)]. 
+
+K-means cluster analysis requires the analyst to define *k* in advance. As the number of clusters is typically not known in advance, the analyst executes the algorithm with several different values for *k* and compares the within-cluster sum of squared error for each. The *k* which results in the clusters with the lowest SSE, or is not significantly improved by additional *k*, is selected as the optimal *k*. This procedure showed that the 66,400 documents are optimally partitioned into about 200 clusters.^[See the Appendix.]
+
+
+```{r Cluster-Analysis}
+
 ```
 
 \pagebreak
@@ -69,7 +80,6 @@ ggplot(hist, aes(x=hist[,1])) + geom_histogram() + theme_bw() +
 ```{r Cluster-Diagnostics, echo=FALSE}
 source("~/Dropbox/gh_projects/uk_govt_web_archive/analyses/cluster_diagnose_k.R")
 wss.plot
-sse.plot
 ```
 
 
