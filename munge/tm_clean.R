@@ -78,10 +78,6 @@ corpus <- tm_map(corpus, tolower)
 corpus <- tm_map(corpus, stripWhitespace)
 corpus <- tm_map(corpus, removeWords, stopwords("english"))
 
-
-corpus <- tm_map(corpus, stemDocument, language = "english")
-
-
 headings <- paste0('Heading',seq(66414))
 i <- 0
 corpus = tm_map(corpus, function(x) {
@@ -108,9 +104,11 @@ corpus = tm_map(corpus, function(x) {
 
 rm(headings, dates, descriptions,i)
 
-summary(corpus)
+corpus.not.stemmed<-corpus
 
-save("corpus", file="data/globalisation_corpus.Rdata") # save for future use
+corpus <- tm_map(corpus, stemDocument, language = "english")
+
+save(corpus, corpus.not.stemmed, file="data/globalisation_corpus.Rdata") # save for future use
 
 load("data/globalisation_corpus.Rdata")
 

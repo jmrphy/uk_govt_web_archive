@@ -6,7 +6,7 @@ require(reshape2)
 require(gridExtra)
 
 load("~/Dropbox/gh_projects/uk_govt_web_archive/data/k_clusters.Rdata")
-load("~/Dropbox/gh_projects/uk_govt_web_archive/data/globalisation_dtm.Rdata")
+#load("~/Dropbox/gh_projects/uk_govt_web_archive/data/globalisation_dtm.Rdata")
 
 
 options(scipen=999)
