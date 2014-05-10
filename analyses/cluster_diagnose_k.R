@@ -21,7 +21,7 @@ names(wss.df)<-c("WSS", "K")
 
 wss.plot<-ggplot(wss.df, aes(x=K, y=WSS)) +
   geom_line() +
-  theme_bw() +
+  theme_bw(base_size = 22) +
   labs(y="Within Sum of Squares", x="Clusters (k)", title="Within Sum of Squares by Number of Clusters")
 
 

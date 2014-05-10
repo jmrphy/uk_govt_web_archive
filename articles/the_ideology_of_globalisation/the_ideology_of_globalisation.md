@@ -10,7 +10,13 @@ abstract: Scholars argue that the concept of "globalisation" is strategically de
 ...
 
 
-### Data
+
+
+
+
+
+
+## Data
 
 The UK Government Web Archive stores more than 7 terabytes of digital items hosted across the UK government web system since 2000. These items include a wide variety of web pages but also documents, such as Adobe PDF files, hosted within the UK government web system.  
 
@@ -22,7 +28,7 @@ Data collection began with an attempt to scrape 150,000 items from the UK Govern
 
 
 ### Descriptive Statistics
-![Most frequent terms](figure/globalisation_frequency_plot.png) 
+![Most Frequent Terms in Web Pages Containing "Globalisation"](figure/globalisation_frequency_plot.pdf) 
 
 
 \pagebreak
@@ -112,11 +118,13 @@ K-means cluster analysis requires the analyst to define *k* in advance. As the n
 
 ## Diagnostics
 
-![Document lengths](figure/Document-Lengths.png) 
+![Document Lengths](figure/Document-Lengths.pdf) 
 
 
-![plot of chunk Cluster-Diagnostics](figure/Cluster-Diagnostics.png) 
+![Diagnostic Plot for Finding Optimal K in K-Cluster Analysis](figure/Cluster-Diagnostics.pdf) 
 
+
+![Diagnostic Plot for Finding Optimal Number of Topics in LDA Topic Model](figure/LDA-Diagnostics.pdf) 
 
 
 \pagebreak

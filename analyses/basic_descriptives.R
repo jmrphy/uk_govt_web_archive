@@ -20,10 +20,13 @@ terms<-names(frequencies)
 freqs<-data.frame(terms,frequencies)
 freqs$terms <- factor(freqs$terms, levels=freqs$terms[order(frequencies)], ordered=TRUE)
 options(scipen=999)
+
 freq.plot<-ggplot(data=freqs, aes(x=terms, y=frequencies)) +
   geom_point(stat="identity") +
   coord_flip() +
-  theme_bw()
+  labs(x="Total Frequency", y="Terms", title="Most Common Terms")+
+  theme_bw(base_size = 22)
+
 
 
 global<-as.data.frame(findAssocs(dtm, 'global', 0.0))

@@ -4,6 +4,7 @@ require(slam)
 require(topicmodels)
 
 load("data/globalisation_dtm.Rdata")
+load("data/globalisation_corpus.Rdata")
 
 sampledtm<-dtm[sample(nrow(dtm),size=(dim(dtm)[1]/10),replace=FALSE),]
 rm(dtm)

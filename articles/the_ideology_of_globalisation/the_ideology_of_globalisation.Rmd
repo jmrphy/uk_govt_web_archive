@@ -10,7 +10,10 @@ abstract: Scholars argue that the concept of "globalisation" is strategically de
 ...
 
 ```{r setup, include=FALSE, warning=FALSE}
-opts_chunk$set(fig.width=8, fig.height=7, fig.show='hold', echo=FALSE, message=FALSE, warning=FALSE, error=FALSE) 
+opts_chunk$set(dev=c("pdf"), fig.width=14, fig.height=14, fig.show='hold', fig.lp="fig:", par=TRUE, echo=FALSE, results="hide", message=FALSE, warning=FALSE, error=FALSE)
+knit_hooks$set(par=function(before, options, envir){
+if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+}, crop=hook_pdfcrop)  
 ```
 
 
@@ -28,7 +31,7 @@ inspected<-inspect(dtm)
 source("~/Dropbox/gh_projects/uk_govt_web_archive/analyses/basic_descriptives.R")
 ```
 
-### Data
+## Data
 
 The UK Government Web Archive stores more than 7 terabytes of digital items hosted across the UK government web system since 2000. These items include a wide variety of web pages but also documents, such as Adobe PDF files, hosted within the UK government web system.  
 
@@ -40,7 +43,7 @@ Data collection began with an attempt to scrape 150,000 items from the UK Govern
 
 
 ### Descriptive Statistics
-```{r globalisation_frequency_plot, echo=FALSE, cache=TRUE, fig.cap="Most frequent terms"}
+```{r globalisation_frequency_plot, echo=FALSE, cache=FALSE, fig.cap="Most Frequent Terms in Web Pages Containing \"Globalisation\""}
 freq.plot
 ```
 
@@ -71,17 +74,21 @@ K-means cluster analysis requires the analyst to define *k* in advance. As the n
 
 ## Diagnostics
 
-```{r Document-Lengths, echo=FALSE, cache=TRUE, fig.cap="Document lengths"}
+```{r Document-Lengths, echo=FALSE, cache=FALSE, fig.cap="Document Lengths"}
 hist<-as.data.frame(apply(dtm, 1, sum))
-ggplot(hist, aes(x=hist[,1])) + geom_histogram() + theme_bw() +
+ggplot(hist, aes(x=hist[,1])) + geom_histogram() + theme_bw(base_size = 22) +
   labs(x="Count", y="Number of Terms in Document", title="The Distribution of Document Length")
 ```
 
-```{r Cluster-Diagnostics, echo=FALSE}
+```{r Cluster-Diagnostics, echo=FALSE, fig.cap="Diagnostic Plot for Finding Optimal K in K-Cluster Analysis"}
 source("~/Dropbox/gh_projects/uk_govt_web_archive/analyses/cluster_diagnose_k.R")
 wss.plot
 ```
 
+```{r LDA-Diagnostics, echo=FALSE, fig.cap="Diagnostic Plot for Finding Optimal Number of Topics in LDA Topic Model"}
+source("~/Dropbox/gh_projects/uk_govt_web_archive/analyses/lda/lda_diagnose_k.R")
+perplexity.plot
+```
 
 \pagebreak
 
